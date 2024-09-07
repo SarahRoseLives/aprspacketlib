@@ -63,26 +63,3 @@ class PacketGenerator:
     @staticmethod
     def dx_cluster_packet(callsign, dx_station, frequency, mode, location):
         return f"{callsign}>DX,TCPIP*,qAC,THIRD::DX de {callsign}:{frequency} MHz {mode} {location}"
-
-    @staticmethod
-    def generate_ack_packet(raw_packet, callsign):
-        # Parse the raw packet to extract the recipient and message number
-        try:
-            parts = raw_packet.split("::")[1]  # Extract the part after '::'
-            recipient = parts[:9].strip()  # Extract the recipient callsign (padded)
-            msg_content = parts[9:]  # Extract the message content
-
-            if "{" in msg_content:
-                msgNo = msg_content.split("{")[1].strip()  # Extract the message number from {}
-            else:
-                raise ValueError("No message number found in the raw packet")
-
-            # If the msgNo contains an alphabet, append "}"
-            if any(char.isalpha() for char in msgNo):
-                msgNo += "}"
-
-            # Create the acknowledgment packet
-            ack_packet = f"{callsign}>APRS::{recipient:<9}:ack{msgNo}"
-            return ack_packet
-        except Exception as e:
-            raise ValueError(f"Error parsing raw packet for ACK generation: {e}")
