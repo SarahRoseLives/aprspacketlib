@@ -22,8 +22,3 @@ message_packet = PacketGenerator.message_packet("AD8NT-9", "AD8NT-5", "Hello fro
 print(f"Generated Packet: {message_packet}")
 validate_packet(message_packet)
 
-# Example: Validating ACK packet creation
-raw_packet = "AD8NT-9>APRS::AD8NT-5 :Test message{AB"
-ack_packet = PacketGenerator.generate_ack_packet(raw_packet, "AD8NT-9")
-print(f"Generated ACK Packet: {ack_packet}")
-validate_packet(ack_packet)

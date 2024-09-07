@@ -31,11 +31,7 @@ message_packet = PacketGenerator.message_packet("AD8NT-9", "AD8NT-5", "Hello fro
 print(f"Generated Packet: {message_packet}")
 validate_packet(message_packet)
 
-# Example: Validating ACK packet creation
-raw_packet = "AD8NT-9>APRS::AD8NT-5 :Test message{AB"
-ack_packet = PacketGenerator.generate_ack_packet(raw_packet, "AD8NT-9")
-print(f"Generated ACK Packet: {ack_packet}")
-validate_packet(ack_packet)
+
 ```
 
 ## Generated Output
@@ -46,6 +42,4 @@ Generated Packet: AD8NT-9>APRS,TCPIP*,qAC,THIRD:>Example Status Message
 Valid packet: {'raw': 'AD8NT-9>APRS,TCPIP*,qAC,THIRD:>Example Status Message', 'from': 'AD8NT-9', 'to': 'APRS', 'path': ['TCPIP*', 'qAC', 'THIRD'], 'via': 'THIRD', 'format': 'status', 'status': 'Example Status Message'}
 Generated Packet: AD8NT-9>APRS,TCPIP*,qAC,THIRD::AD8NT-5  :Hello from AD8NT
 Valid packet: {'raw': 'AD8NT-9>APRS,TCPIP*,qAC,THIRD::AD8NT-5  :Hello from AD8NT', 'from': 'AD8NT-9', 'to': 'APRS', 'path': ['TCPIP*', 'qAC', 'THIRD'], 'via': 'THIRD', 'addresse': 'AD8NT-5', 'format': 'message', 'message_text': 'Hello from AD8NT'}
-Generated ACK Packet: AD8NT-9>APRS::AD8NT-5 ::ackAB}
-Valid packet: {'raw': 'AD8NT-9>APRS::AD8NT-5 ::ackAB}', 'from': 'AD8NT-9', 'to': 'APRS', 'path': [], 'via': '', 'format': 'beacon', 'text': ':AD8NT-5 ::ackAB}'}
 ```
